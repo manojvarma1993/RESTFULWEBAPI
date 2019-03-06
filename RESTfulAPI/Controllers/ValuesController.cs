@@ -2,25 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace RESTfulAPI.Controllers
 {
+    [EnableCors("TestPolicy")]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
         // GET api/values
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            List<string> testList=new List<string>();
+            testList.Add("value1");
+            testList.Add("value2");
+            return Ok(testList);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            return Ok("Value1");
         }
 
         // POST api/values

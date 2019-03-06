@@ -23,6 +23,13 @@ namespace RESTfulAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(Options =>
+            {
+                Options.AddPolicy("TestPolicy", builder =>
+                {
+                    builder.AllowAnyOrigin();
+                });
+            });
             services.AddMvc();
         }
 
@@ -34,6 +41,7 @@ namespace RESTfulAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("TestPolicy");
             app.UseMvc();
         }
     }
