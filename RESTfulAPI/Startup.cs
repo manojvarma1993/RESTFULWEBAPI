@@ -41,8 +41,12 @@ namespace RESTfulAPI
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseStatusCodePages();
             app.UseCors("TestPolicy");
-            app.UseMvc();
+            app.UseMvc(setupAction =>
+            {
+                setupAction.
+            });
         }
     }
 }
